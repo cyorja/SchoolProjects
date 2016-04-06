@@ -22,27 +22,22 @@ public class CurtisSort {
 		//	}
 		//}
 
-		boolean change = true;
-		int count = 1;
 		int countThrough = 1; 
 
-		while (change == true) {
-			change = false;
-			String temp = strings[0];
-			int tempCount = 0;
-			while(count < strings.length) {
-				if (temp.compareTo(strings[count]) > 0) {
-					temp = strings[count];
-					tempCount = count;
-					change = true;
+		while (countThrough != strings.length) { 
+			int indexOfSmallest = countThrough - 1;
+			String smallest = strings[indexOfSmallest];
+			for(int count = countThrough;count < strings.length; count++) {
+				if (smallest.compareTo(strings[count]) > 0) {
+					smallest = strings[count];
+					indexOfSmallest = count;
 				}
-				count ++;
 			}
 
-			System.arraycopy(strings, 0, strings, 1,tempCount);
-			strings[0] = temp;
+			System.out.println("Moving " + smallest + " to slot " + (countThrough -1 ));
+			System.arraycopy(strings, countThrough - 1, strings, countThrough,indexOfSmallest - (countThrough - 1));
+			strings[countThrough - 1] = smallest;
 			countThrough++;
-			count = countThrough;
 		}
 		return strings;
 	}
