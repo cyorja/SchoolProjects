@@ -100,7 +100,7 @@ public class Profiler {
 	}
 	
 	public static void main(String[] args) {
-		Sorter hsort = new BubbleSort();
+		Sorter hsort = new CurtisSort();
 		Profiler profiler = new Profiler(hsort);
 		profiler.profile();
 	}

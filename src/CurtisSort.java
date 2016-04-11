@@ -1,5 +1,5 @@
 
-public class CurtisSort {
+public class CurtisSort implements Sorter {
 
 	public String[] sort(String[] strings) {
 		//boolean switched = true;
@@ -34,7 +34,6 @@ public class CurtisSort {
 				}
 			}
 
-			System.out.println("Moving " + smallest + " to slot " + (countThrough -1 ));
 			System.arraycopy(strings, countThrough - 1, strings, countThrough,indexOfSmallest - (countThrough - 1));
 			strings[countThrough - 1] = smallest;
 			countThrough++;
