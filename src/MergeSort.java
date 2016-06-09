@@ -1,14 +1,18 @@
 import java.util.Arrays;
 
 
-public class mergeSort {
+public class MergeSort implements Sorter {
 	
 	public static void main(String args[]) {
-		mergeSort sorter = new mergeSort();
-		int[] test = {4, 7, 1, 8, 4, 0, -100}; // Change these
+		MergeSort sorter = new MergeSort();
+		int[] test = {1, 2, 3, 4, 5, 6, 7, 8, 0}; // Change these
 		
 		int[] sorted = sorter.mergeSort(test);
-		System.out.println(Arrays.asList(sorted).toString());
+		for(int x : sorted) {
+			System.out.print(x + " ");
+		}
+		System.out.println();
+		//System.out.println(Arrays.asList(sorted).toString());
 	}
 	
 	public int[] mergeSort ( int [] numbers) {
@@ -35,8 +39,8 @@ public class mergeSort {
 	
 	public int[] secondHalf ( int [] numbers ) {
 		//Do this like above
-		int[] copy = new int[numbers.length/2];
-		System.arraycopy(numbers, numbers.length/2, copy, 0, numbers.length/2);
+		int[] copy = new int[numbers.length - numbers.length/2];
+		System.arraycopy(numbers, numbers.length/2, copy, 0, numbers.length - numbers.length/2);
 		return copy;
 	}
 	
@@ -45,19 +49,19 @@ public class mergeSort {
 		int markerOne = 0;
 		int markerTwo = 0;
 		while (! (markerOne >= numbersOne.length || markerTwo >= numbersTwo.length)) {
-			if (numbersOne[markerOne] > numbersTwo[markerTwo]) {
+			if (numbersOne[markerOne] <= numbersTwo[markerTwo]) {
 				merger[markerOne+markerTwo] = numbersOne[markerOne];
 				markerOne++;
 			} else {
+				merger[markerOne+markerTwo] = numbersTwo[markerTwo];
 				merger[markerOne+markerTwo] = numbersTwo[markerTwo];
 				markerTwo++;
 			}	
 		}
 		if (markerOne >= numbersOne.length) {
-			// Copy what is left in numbersTwo into merger
-			System.arraycopy(arg0, arg1, arg2, arg3, arg4);
+			System.arraycopy(numbersTwo,  markerTwo, merger, markerOne + markerTwo, numbersTwo.length - markerTwo);
 		} else {
-			// fill this in
+			System.arraycopy(numbersOne, markerOne, merger, markerOne + markerTwo, numbersOne.length - markerOne);
 		}
 		
 		return merger;
