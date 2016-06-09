@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Profiler {
 
@@ -49,7 +50,7 @@ public class Profiler {
 	}
 	
 	private Result runOneSortWithSize(int numEntries) {
-		String[] randomList = generateRandomList(numEntries);
+		int[] randomList = generateRandomList(numEntries);
 		long sortStart = System.currentTimeMillis();
 		sorter.sort(randomList); // Don't even care about the returned sorted list
 		long sortEnd = System.currentTimeMillis();
@@ -81,22 +82,13 @@ public class Profiler {
 		}
 	}
 	
-	private String[] generateRandomList(int numEntries) {
-		int NUM_CHARS_IN_EACH_STRING = 20;
-		char MAX_CHAR = 'j';
-		
-		int maxRandomInt = MAX_CHAR-'a'+1;
-		ArrayList<String> randomList = new ArrayList<String>(numEntries);
-		for(int stringCtr=0; stringCtr<numEntries; ++stringCtr) {
-			StringBuffer buffer = new StringBuffer(10);
-			for(int charCtr=0; charCtr<NUM_CHARS_IN_EACH_STRING; ++charCtr) {
-				int randomInt = (int)(Math.random() * maxRandomInt);
-				char randomChar = (char) ('a'+randomInt);
-				buffer.append(randomChar);
-			}
-			randomList.add(buffer.toString());
+	private int[] generateRandomList(int numEntries) {
+		Random intGenerator = new Random();
+		int[] randomInts = new int[numEntries];
+		for(int ctr=0; ctr<numEntries; ++ctr) {
+			randomInts[ctr] = intGenerator.nextInt();
 		}
-		return randomList.toArray(new String[0]);
+		return randomInts;
 	}
 	
 	public static void main(String[] args) {

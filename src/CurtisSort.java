@@ -1,7 +1,7 @@
 
 public class CurtisSort implements Sorter {
 
-	public String[] sort(String[] strings) {
+	public int[] sort(int[] ints) {
 		//boolean switched = true;
 
 		//String first = strings[0];
@@ -24,31 +24,31 @@ public class CurtisSort implements Sorter {
 
 		int countThrough = 1; 
 
-		while (countThrough != strings.length) { 
+		while (countThrough != ints.length) { 
 			int indexOfSmallest = countThrough - 1;
-			String smallest = strings[indexOfSmallest];
-			for(int count = countThrough;count < strings.length; count++) {
-				if (smallest.compareTo(strings[count]) > 0) {
-					smallest = strings[count];
+			int smallest = ints[indexOfSmallest];
+			for(int count = countThrough;count < ints.length; count++) {
+				if (smallest > ints[count]) {
+					smallest = ints[count];
 					indexOfSmallest = count;
 				}
 			}
 
-			System.arraycopy(strings, countThrough - 1, strings, countThrough,indexOfSmallest - (countThrough - 1));
-			strings[countThrough - 1] = smallest;
+			System.arraycopy(ints, countThrough - 1, ints, countThrough,indexOfSmallest - (countThrough - 1));
+			ints[countThrough - 1] = smallest;
 			countThrough++;
 		}
-		return strings;
+		return ints;
 	}
 
 	public static void main(String[] args) {
 
-		// Start with a random list of strings
-		String[] input = {"men", "women", "cats", "dogs", "mice", "whales", "cheese", "cheesecrackers"};
+		// Start with a random list of ints
+		int[] input = {16,25474, 2, 21, 1000, 32000, 163, 0};
 
 		// Use a CurtisSort to sort the list
 		CurtisSort sorter = new CurtisSort();
-		String[] output = sorter.sort(input);
+		int[] output = sorter.sort(input);
 
 		// Print out the sorted list
 		for(int ctr=0; ctr< output.length; ++ctr) {

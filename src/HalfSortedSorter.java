@@ -1,20 +1,20 @@
 
 public class HalfSortedSorter implements Sorter {
 
-	public String[] sort(String[] strings) {
-		String[] less = new String[strings.length];
+	public int[] sort(int[] ints) {
+		int[] less = new int[ints.length];
 		int numInLess = 0;
-		String[] more = new String[strings.length];
+		int[] more = new int[ints.length];
 		int numInMore = 0;
 		
-		String mid = strings[0];
+		int mid = ints[0];
 		
-		for(int ctr=1; ctr<strings.length; ++ctr) {
-			if (mid.compareTo(strings[ctr]) > 0) {
-				less[numInLess] = strings[ctr];
+		for(int ctr=1; ctr<ints.length; ++ctr) {
+			if (mid > ints[ctr]) {
+				less[numInLess] = ints[ctr];
 				++numInLess;
 			} else {
-				more[numInMore] = strings[ctr];
+				more[numInMore] = ints[ctr];
 				++numInMore;
 			}
 		}
@@ -23,4 +23,20 @@ public class HalfSortedSorter implements Sorter {
 		System.arraycopy(more, 0, less, numInLess+1, numInMore);
 		return less;
 	}
+	
+	public static void main(String[] args) {
+
+		// Start with a random list of ints
+		int[] input = {16,25474, 2, 21, 1000, 32000, 163, 0};
+
+		// Use a BubbleSorter to sort the list
+		Sorter sorter = new HalfSortedSorter();
+		int[] output = sorter.sort(input);
+
+		// Print out the sorted list
+		for(int ctr=0; ctr< output.length; ++ctr) {
+			System.out.println(output[ctr]);
+		}
+	}
+
 }
